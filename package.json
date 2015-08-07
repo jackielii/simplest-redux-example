@@ -1,0 +1,37 @@
+{
+  "name": "simplest-redux-example",
+  "version": "0.0.0",
+  "description": "simplest redux + react example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "watchify --extension=js -o bundle.js index.js & python -m SimpleHTTPServer",
+    "build": "browserify index.js > bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackielii/simplest-redux-example.git"
+  },
+  "keywords": [
+    "redux",
+    "react"
+  ],
+  "author": "Jackie Li",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jackielii/simplest-redux-example/issues"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "homepage": "https://github.com/jackielii/simplest-redux-example#readme",
+  "dependencies": {
+    "react": "^0.13.3",
+    "react-redux": "^0.4.0",
+    "redux": "^1.0.0-rc",
+    "browserify": "~10.2.4",
+    "babelify": "~6.1.2"
+  }
+}
