@@ -32,7 +32,6 @@ function counter(state={count: 0}, action) {
 // Store:
 let store = createStore(counter);
 
-
 // Connected Component:
 function mapStateToProps(state)  {
   // Map Redux state to component props
@@ -40,12 +39,14 @@ function mapStateToProps(state)  {
     value: state.count
   };
 }
+
 function mapDispatchToProps(dispatch) {
   // Map Redux actions to component props
   return {
     onIncreaseClick: () => dispatch(increaseAction)
   };
 }
+
 let App = connect(
   mapStateToProps,
   mapDispatchToProps
