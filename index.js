@@ -5,11 +5,11 @@ import { Provider, connect } from 'react-redux';
 // React component
 class Counter extends React.Component {
   render(){
-    const { count, onClickIncrease } = this.props;
+    const { value, onIncreaseClick } = this.props;
     return (
       <div>
-        <span>{this.props.count}</span>
-        <button onClick={onClickIncrease}>Increase</button>
+        <span>{value}</span>
+        <button onClick={onIncreaseClick}>Increase</button>
       </div>
     );
   }
@@ -32,19 +32,24 @@ function counter(state={count: 0}, action) {
 // Store:
 let store = createStore(counter);
 
-// Component container
-class CounterContainer extends React.Component {
-  render() {
-    // injected by "connect" from react-redux
-    const { dispatch, count } = this.props;
-    return (
-      <Counter count={count} onClickIncrease={()=>dispatch(increaseAction)} />
-    )
-  }
-}
 
-// connect redux
-let App = connect(state => state)(CounterContainer);
+// Connected Component:
+function mapStateToProps(state)  {
+  // Map Redux state to component props
+  return {
+    value: state.count
+  };
+}
+function mapDispatchToProps(dispatch) {
+  // Map Redux actions to component props
+  return {
+    onIncreaseClick: () => dispatch(increaseAction)
+  };
+}
+let App = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Counter);
 
 React.render(
   <Provider store={store}>
