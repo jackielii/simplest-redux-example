@@ -32,8 +32,8 @@ function counter(state={count: 0}, action) {
 // Store:
 let store = createStore(counter);
 
-// Map Redux state to component props
-function mapStateToProps(state)  {
+// Map Redux store to component props
+function mapStoreToProps(state)  {
   return {
     value: state.count
   };
@@ -48,7 +48,7 @@ function mapDispatchToProps(dispatch) {
 
 // Connected Component:
 let App = connect(
-  mapStateToProps,
+  mapStoreToProps,
   mapDispatchToProps
 )(Counter);
 
