@@ -4,7 +4,7 @@
   "description": "simplest redux + react example",
   "main": "index.js",
   "scripts": {
-    "start": "watchify --extension=js -o bundle.js index.js & python -m SimpleHTTPServer"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -19,11 +19,6 @@
   "bugs": {
     "url": "https://github.com/jackielii/simplest-redux-example/issues"
   },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
-  },
   "homepage": "https://github.com/jackielii/simplest-redux-example#readme",
   "dependencies": {
     "react": "^0.13.3",
@@ -31,8 +26,10 @@
     "redux": "^1.0.0-rc"
   },
   "devDependencies": {
-    "browserify": "~10.2.4",
-    "babelify": "~6.1.2",
-    "watchify": "^3.3.1"
+    "babel-core": "^5.6.18",
+    "babel-loader": "^5.1.4",
+    "react-hot-loader": "^1.2.7",
+    "webpack": "^1.9.11",
+    "webpack-dev-server": "^1.9.0"
   }
 }
