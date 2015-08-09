@@ -1,26 +1,33 @@
-import React from 'react';
-import { createStore } from 'redux';
-import { Provider, connect } from 'react-redux';
+var React = require('react');
+var Redux = require('redux');
+var ReactRedux = require('react-redux');
+var createStore = Redux.createStore;
+var Provider = ReactRedux.Provider;
+var connect = ReactRedux.connect;
 
 // React component
-class Counter extends React.Component {
-  render(){
-    const { value, onIncreaseClick } = this.props;
+var Counter = React.createClass( {
+  render: function() {
+    var value = this.props.value;
+    var onIncreaseClick = this.props.onIncreaseClick;
     return (
-      <div>
-        <span>{value}</span>
-        <button onClick={onIncreaseClick}>Increase</button>
-      </div>
+      React.createElement("div", null, 
+        React.createElement("span", null, value), 
+        React.createElement("button", {onClick: onIncreaseClick}, "Increase")
+      )
     );
   }
-}
+});
 
 // Action:
-const increaseAction = {type: 'increase'};
+var increaseAction = {type: 'increase'};
 
 // Reducer:
-function counter(state={count: 0}, action) {
-  let count = state.count;
+function counter(state, action) {
+  if (typeof state === 'undefined') {
+    state = {count: 0};
+  }
+  var count = state.count;
   switch(action.type){
     case 'increase':
       return {count: count+1};
@@ -30,7 +37,7 @@ function counter(state={count: 0}, action) {
 }
 
 // Store:
-let store = createStore(counter);
+var store = createStore(counter);
 
 // Map Redux state to component props
 function mapStateToProps(state)  {
@@ -42,19 +49,23 @@ function mapStateToProps(state)  {
 // Map Redux actions to component props
 function mapDispatchToProps(dispatch) {
   return {
-    onIncreaseClick: () => dispatch(increaseAction)
+    onIncreaseClick: function() {
+      dispatch(increaseAction)
+    }
   };
 }
 
 // Connected Component:
-let App = connect(
+var App = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Counter);
 
 React.render(
-  <Provider store={store}>
-    {() => <App />}
-  </Provider>,
+  React.createElement(Provider, {store: store}, 
+    function(){
+      return React.createElement(App, null)
+    }
+  ),
   document.getElementById('root')
 );

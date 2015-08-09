@@ -21,7 +21,6 @@
   },
   "browserify": {
     "transform": [
-      "babelify"
     ]
   },
   "homepage": "https://github.com/jackielii/simplest-redux-example#readme",
@@ -32,7 +31,6 @@
   },
   "devDependencies": {
     "browserify": "~10.2.4",
-    "babelify": "~6.1.2",
     "watchify": "^3.3.1"
   }
 }
