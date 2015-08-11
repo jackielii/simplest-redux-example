@@ -1,6 +1,8 @@
 import React from 'react';
-import { createStore } from 'redux';
+import { createStore, compose } from 'redux';
 import { Provider, connect } from 'react-redux';
+import { devTools, persistState } from 'redux-devtools';
+import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
 // React component
 class Counter extends React.Component {
@@ -30,7 +32,12 @@ function counter(state={count: 0}, action) {
 }
 
 // Store:
-let store = createStore(counter);
+const finalCreateStore = compose(
+  devTools(),
+  persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/)),
+  createStore
+)
+let store = finalCreateStore(counter);
 
 // Map Redux state to component props
 function mapStateToProps(state)  {
@@ -53,8 +60,13 @@ let App = connect(
 )(Counter);
 
 React.render(
-  <Provider store={store}>
-    {() => <App />}
-  </Provider>,
+  <div>
+    <Provider store={store}>
+      {() => <App />}
+    </Provider>
+    <DebugPanel right top bottom >
+      <DevTools store={store} monitor={LogMonitor} />
+    </DebugPanel>
+  </div>,
   document.getElementById('root')
 );
