@@ -4,6 +4,7 @@ var config = require('./webpack.config');
 
 new WebpackDevServer(webpack(config), {
   hot: true,
+  noInfo: false,
   stats: {
     colors: true
   }
