@@ -54,7 +54,7 @@ let App = connect(
 
 React.render(
   <Provider store={store}>
-    {() => <App />}
+    <App />
   </Provider>,
   document.getElementById('root')
 );
