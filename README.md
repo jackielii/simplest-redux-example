@@ -6,7 +6,9 @@ Can it be simpler? send a pull request
 
 To run this example:
 
-1. `npm install`
+1. [Download this repo](https://github.com/jackielii/simplest-redux-example/archive/master.zip) or `git clone https://github.com/jackielii/simplest-redux-example.git`
+2. From the repo folder run:  
+   `npm install`
 2. `npm start`
 3. open http://localhost:8000/ in the browser
 
