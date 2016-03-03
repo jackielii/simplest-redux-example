@@ -22,14 +22,14 @@ Counter.propTypes = {
 }
 
 // Action
-const increaseAction = {type: 'increase'}
+const increaseAction = { type: 'increase' }
 
 // Reducer
-function counter (state = {count: 0}, action) {
+function counter (state = { count: 0 }, action) {
   let count = state.count
   switch (action.type) {
     case 'increase':
-      return {count: count + 1}
+      return { count: count + 1 }
     default:
       return state
   }
