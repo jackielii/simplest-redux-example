@@ -26,7 +26,7 @@ const increaseAction = { type: 'increase' }
 
 // Reducer
 function counter(state = { count: 0 }, action) {
-  let count = state.count
+  const count = state.count
   switch (action.type) {
     case 'increase':
       return { count: count + 1 }
@@ -36,7 +36,7 @@ function counter(state = { count: 0 }, action) {
 }
 
 // Store
-let store = createStore(counter)
+const store = createStore(counter)
 
 // Map Redux state to component props
 function mapStateToProps(state) {
@@ -53,7 +53,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 // Connected Component
-let App = connect(
+const App = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Counter)
