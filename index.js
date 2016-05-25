@@ -3,26 +3,23 @@ import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
 
-// React component
-class Counter extends Component {
-  render() {
-    const { value, onIncreaseClick } = this.props
-    return (
-      <div>
-        <span>{value}</span>
-        <button onClick={onIncreaseClick}>Increase</button>
-      </div>
-    )
-  }
-}
+// Presentational (pure) Component
+const Counter = ({value, increaseAction}) => (
+  <div>
+    <span>{value}</span>
+    <button onClick={increaseAction}>Increase</button>
+  </div>
+)
 
 Counter.propTypes = {
   value: PropTypes.number.isRequired,
-  onIncreaseClick: PropTypes.func.isRequired
+  increaseAction: PropTypes.func.isRequired
 }
 
-// Action
-const increaseAction = { type: 'increase' }
+// Action Creator
+const increaseAction = () => ({
+  type: 'increase' 
+})
 
 // Reducer
 function counter(state = { count: 0 }, action) {
@@ -45,17 +42,10 @@ function mapStateToProps(state) {
   }
 }
 
-// Map Redux actions to component props
-function mapDispatchToProps(dispatch) {
-  return {
-    onIncreaseClick: () => dispatch(increaseAction)
-  }
-}
-
-// Connected Component
+// Container (connected) Component
 const App = connect(
   mapStateToProps,
-  mapDispatchToProps
+  { increaseAction } // Map action creators to component props by name
 )(Counter)
 
 ReactDOM.render(
