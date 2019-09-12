@@ -7,10 +7,10 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from "redux-thunk";
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
-import RootReducer from './../src/redux/rootReducer';
+import Reducer from './../src/redux/reducer';
 
 const store = createStore(
-    RootReducer,
+    Reducer,
     applyMiddleware(thunk)
 );
 
