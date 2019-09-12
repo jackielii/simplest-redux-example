@@ -1,5 +1,6 @@
 export const GET_DETAILS = 'GET_DETAILS';
 export const ADD_DETAILS = 'ADD_DETAILS';
+export const DELETE_DETAILS = 'DELETE_DETAILS';
 
 export function getDetails() {
     return dispatch => {
@@ -13,6 +14,16 @@ export function addDetails(payload) {
     return dispatch => {
         return dispatch({
             type: ADD_DETAILS,
+            payload : payload
+        });
+    }
+};
+
+
+export function deleteDetails(payload) {
+    return dispatch => {
+        return dispatch({
+            type: DELETE_DETAILS,
             payload : payload
         });
     }

@@ -1,6 +1,7 @@
 
 export const GET_DETAILS = 'GET_DETAILS';
 export const ADD_DETAILS = 'ADD_DETAILS';
+export const DELETE_DETAILS = 'DELETE_DETAILS';
 
 const staticData = [
     { "Name": "Ankit Kanojia", "Profession": "Adept Coder", "ContactNo": "(+91)-9099673090" },
@@ -24,6 +25,11 @@ const reducerCollection = (state = initialState, action) => {
                 ...state,
                 dataCollection: state.dataCollection.concat({ "Name": action.payload.name, "Profession": action.payload.profession, "ContactNo": action.payload.contactno })
             };
+            case DELETE_DETAILS:
+                return {
+                    ...state,
+                    dataCollection: state.dataCollection.filter((data) => data !== action.payload)
+                };
         default:
             return state;
     }
