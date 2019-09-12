@@ -22,7 +22,7 @@ const reducerCollection = (state = initialState, action) => {
         case ADD_DETAILS:
             return {
                 ...state,
-                dataCollection: state.dataCollection.concat({ "Name": "Ankit Kanojia", "Profession": "Adept Coder", "ContactNo": "(+91)-9099673090" })
+                dataCollection: state.dataCollection.concat({ "Name": action.payload.name, "Profession": action.payload.profession, "ContactNo": action.payload.contactno })
             };
         default:
             return state;
