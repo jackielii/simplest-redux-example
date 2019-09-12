@@ -53,5 +53,37 @@ tr:nth-child(even) {
 }
 
 .leftPanel{
-  max-width: 50%;
+  background-color: #FFF; 
+  width: 50%;
+  float: left;
+}
+
+.rightPanel {
+  background-color: #FFF; 
+  border: #FFF 1px solid; 
+  width: 48%;
+  height: 500px;
+  float: left;
+  margin-left:20px;
+}
+
+.rightPanel table{
+  width: 300px;
+  margin-top: 15px !important; 
+  border:none; 
+  border: 2px solid #dddddd;
+  margin: 0 auto;
+  background: #FFF;
+}
+
+.rightPanel table td, th {
+
+  vertical-align: middle;
+  
+  text-align: left;
+  padding: 8px;
+  width: 300px;
+  border:none; 
+  margin: 0 auto;
+  background: #FFF;
 }

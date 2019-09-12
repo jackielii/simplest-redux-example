@@ -1,5 +1,6 @@
 
 export const GET_DETAILS = 'GET_DETAILS';
+export const ADD_DETAILS = 'ADD_DETAILS';
 
 const staticData = [
     { "Name": "Ankit Kanojia", "Profession": "Adept Coder", "ContactNo": "(+91)-9099673090" },
@@ -16,7 +17,12 @@ const reducerCollection = (state = initialState, action) => {
         case GET_DETAILS:
             return {
                 ...state,
-                dataCollection: initialState.dataCollection
+                dataCollection: state.dataCollection
+            };
+        case ADD_DETAILS:
+            return {
+                ...state,
+                dataCollection: state.dataCollection.concat({ "Name": "Ankit Kanojia", "Profession": "Adept Coder", "ContactNo": "(+91)-9099673090" })
             };
         default:
             return state;
