@@ -4,8 +4,28 @@ import { connect } from 'react-redux';
 
 class Home extends Component {
 
+    state = {
+        name: "",
+        profession: "",
+        contactno: "",
+    }
+
+    hangleChangeEvent = (evt) => {
+        this.setState({ [evt.target.name]: evt.target.value });
+    }
+
     submitDetails = () => {
-        this.props.addDetails("Hello");
+        const userDetails = {
+            name: this.state.name,
+            profession: this.state.profession,
+            contactno: this.state.contactno
+        }
+        this.props.addDetails(userDetails);
+        this.resetForm();
+    }
+
+    resetForm = () => {
+        this.setState({  name: "", profession: "", contactno: "" });
     }
 
     render() {
@@ -14,11 +34,11 @@ class Home extends Component {
                 <div className="leftPanel">
                     <table>
                         <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Profession</th>
-                            <th>Contact No</th>
-                        </tr>
+                            <tr>
+                                <th>Name</th>
+                                <th>Profession</th>
+                                <th>Contact No</th>
+                            </tr>
                         </thead>
                         <tbody>
                             {this.props.dataCollection && this.props.dataCollection.map((data, index) => {
@@ -37,19 +57,19 @@ class Home extends Component {
                         <tr>
                             <td>Name :</td>
                             <td>
-                                <input type="text" name="name" />
+                                <input onChange={this.hangleChangeEvent} value={this.state.name} type="text" name="name" />
                             </td>
                         </tr>
                         <tr>
                             <td>Profession :</td>
                             <td>
-                                <input type="text" name="name" />
+                                <input onChange={this.hangleChangeEvent} value={this.state.profession} type="text" name="profession" />
                             </td>
                         </tr>
                         <tr>
                             <td>ContactNo :</td>
                             <td>
-                                <input type="text" name="name" />
+                                <input onChange={this.hangleChangeEvent} value={this.state.contactno} type="text" name="contactno" />
                             </td>
                         </tr>
                         <tr>
