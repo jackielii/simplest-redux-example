@@ -29,7 +29,8 @@ const reducerCollection = (state = initialState, action) => {
             };
         case UPDATE_DETAILS:
             return {
-                ...state
+                ...state,
+                dataCollection: state.dataCollection.map(item => item.Id === action.payload.Id ? action.payload : item)
             };
         case DELETE_DETAILS:
             return {
