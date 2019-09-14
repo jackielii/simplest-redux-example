@@ -16,15 +16,15 @@ class Home extends Component {
     }
 
     deleteDetails = (object) => {
-        console.log(object);
         this.props.deleteDetails(object);
     }
 
     updateDetails = (object) => {
         this.setState({
-            name: object.Name,
-            profession: object.Profession,
-            contactno: object.ContactNo,
+            name: object.name,
+            profession: object.profession,
+            contactno: object.contactno,
+            Id: object.Id,
             isUpdate : true
         });
     }
@@ -41,6 +41,7 @@ class Home extends Component {
 
     submitUpdateDetails = () => {
         const userDetails = {
+            Id: this.state.Id,
             name: this.state.name,
             profession: this.state.profession,
             contactno: this.state.contactno
@@ -75,9 +76,9 @@ class Home extends Component {
                             {this.props.dataCollection && this.props.dataCollection.map((data, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td>{data.Name}</td>
-                                        <td>{data.Profession}</td>
-                                        <td>{data.ContactNo}</td>
+                                        <td>{data.name}</td>
+                                        <td>{data.profession}</td>
+                                        <td>{data.contactno}</td>
                                         <td width="10%">
                                             <button onClick={() => this.updateDetails(data)} type="button">EDIT</button>
                                         </td>
@@ -105,7 +106,7 @@ class Home extends Component {
                                 </td>
                             </tr>
                             <tr>
-                                <td>ContactNo :</td>
+                                <td>Contact No :</td>
                                 <td>
                                     <input onChange={this.hangleChangeEvent} value={this.state.contactno} type="text" name="contactno" />
                                 </td>
