@@ -43,7 +43,7 @@ class Home extends Component {
                                 <th>Name</th>
                                 <th>Profession</th>
                                 <th>Contact No</th>
-                                <th width="10%">Action</th>
+                                <th style={{textAlign:"center"}} colspan="2" width="10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,6 +53,9 @@ class Home extends Component {
                                         <td>{data.Name}</td>
                                         <td>{data.Profession}</td>
                                         <td>{data.ContactNo}</td>
+                                        <td width="10%">
+                                            <button onClick={() => this.deleteDetails(data)} type="button">EDIT</button>
+                                        </td>
                                         <td width="10%">
                                             <button onClick={() => this.deleteDetails(data)} type="button">DELETE</button>
                                         </td>
