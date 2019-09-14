@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addDetails, deleteDetails } from './../redux/action';
+import { addDetails, deleteDetails , editDetails } from './../redux/action';
 import { connect } from 'react-redux';
 
 class Home extends Component {
@@ -8,6 +8,7 @@ class Home extends Component {
         name: "",
         profession: "",
         contactno: "",
+        isUpdate : false
     }
 
     hangleChangeEvent = (evt) => {
@@ -17,6 +18,15 @@ class Home extends Component {
     deleteDetails = (object) => {
         console.log(object);
         this.props.deleteDetails(object);
+    }
+
+    updateDetails = (object) => {
+        this.setState({
+            name: object.Name,
+            profession: object.Profession,
+            contactno: object.ContactNo,
+            isUpdate : true
+        });
     }
 
     submitDetails = () => {
@@ -43,7 +53,7 @@ class Home extends Component {
                                 <th>Name</th>
                                 <th>Profession</th>
                                 <th>Contact No</th>
-                                <th style={{textAlign:"center"}} colspan="2" width="10%">Action</th>
+                                <th style={{textAlign:"center"}} colSpan="2" width="10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,7 +64,7 @@ class Home extends Component {
                                         <td>{data.Profession}</td>
                                         <td>{data.ContactNo}</td>
                                         <td width="10%">
-                                            <button onClick={() => this.deleteDetails(data)} type="button">EDIT</button>
+                                            <button onClick={() => this.updateDetails(data)} type="button">EDIT</button>
                                         </td>
                                         <td width="10%">
                                             <button onClick={() => this.deleteDetails(data)} type="button">DELETE</button>
@@ -85,10 +95,14 @@ class Home extends Component {
                                     <input onChange={this.hangleChangeEvent} value={this.state.contactno} type="text" name="contactno" />
                                 </td>
                             </tr>
+                            
                             <tr>
                                 <td>&nbsp;</td>
                                 <td>
-                                    <button type="button" onClick={this.submitDetails}>Save Details</button>
+                                {this.state.isUpdate &&
+                                <React.Fragment><button type="button" onClick={this.submitDetails}>Update</button> </React.Fragment>}
+                                     {!this.state.isUpdate &&
+                                    <button type="button" onClick={this.submitDetails}>Save Details</button>}
                                 </td>
                             </tr>
                         </tbody>
@@ -105,7 +119,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     addDetails: (userDetails) => dispatch(addDetails(userDetails)),
-    deleteDetails: (userDetails) => dispatch(deleteDetails(userDetails))
+    deleteDetails: (userDetails) => dispatch(deleteDetails(userDetails)),
+    editDetails: (userDetails) => dispatch(editDetails(userDetails))
 })
 
 
