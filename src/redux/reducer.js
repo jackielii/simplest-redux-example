@@ -5,13 +5,14 @@ export const UPDATE_DETAILS = 'UPDATE_DETAILS';
 export const DELETE_DETAILS = 'DELETE_DETAILS';
 
 const staticData = [
-    { "Name": "Ankit Kanojia", "Profession": "Adept Coder", "ContactNo": "(+91)-9099673090" },
-    { "Name": "Dixita Kanojia", "Profession": "Developer", "ContactNo": "(+91)-9898989898" },
-    { "Name": "Rio Webs", "Profession": "Manger", "ContactNo": "(+91)-9898989898" }
+    {  "Id": 1, "Name": "Ankit Kanojia", "Profession": "Adept Coder", "ContactNo": "(+91)-9099673090" },
+    {  "Id": 2,"Name": "Dixita Kanojia", "Profession": "Developer", "ContactNo": "(+91)-9898989898" },
+    {  "Id": 3,"Name": "Rio Webs", "Profession": "Manger", "ContactNo": "(+91)-9898989898" }
 ];
 
 const initialState = {
-    dataCollection: staticData
+    dataCollection: staticData,
+    id : 3
 }
 
 const reducerCollection = (state = initialState, action) => {
@@ -24,12 +25,11 @@ const reducerCollection = (state = initialState, action) => {
         case ADD_DETAILS:
             return {
                 ...state,
-                dataCollection: state.dataCollection.concat({ "Name": action.payload.name, "Profession": action.payload.profession, "ContactNo": action.payload.contactno })
+                dataCollection: state.dataCollection.concat({ "Id": state.id +1 , "Name": action.payload.name, "Profession": action.payload.profession, "ContactNo": action.payload.contactno })
             };
         case UPDATE_DETAILS:
             return {
-                ...state,
-                dataCollection: state.dataCollection.concat({ "Name": action.payload.name, "Profession": action.payload.profession, "ContactNo": action.payload.contactno })
+                ...state
             };
         case DELETE_DETAILS:
             return {
