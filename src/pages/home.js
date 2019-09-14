@@ -39,6 +39,15 @@ class Home extends Component {
         this.resetForm();
     }
 
+    cancelSubmit = () => {
+        this.setState({
+            name: "",
+            profession: "",
+            contactno: "",
+            isUpdate: false
+        });
+    }
+
     resetForm = () => {
         this.setState({ name: "", profession: "", contactno: "" });
     }
@@ -100,7 +109,7 @@ class Home extends Component {
                                 <td>&nbsp;</td>
                                 <td>
                                 {this.state.isUpdate &&
-                                <React.Fragment><button type="button" onClick={this.submitDetails}>Update</button> </React.Fragment>}
+                                <React.Fragment><button type="button" onClick={this.submitDetails}>Update</button>  <button type="button" onClick={this.cancelSubmit}>Cancel</button></React.Fragment>}
                                      {!this.state.isUpdate &&
                                     <button type="button" onClick={this.submitDetails}>Save Details</button>}
                                 </td>
