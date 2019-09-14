@@ -24,7 +24,7 @@ class Home extends Component {
             name: object.name,
             profession: object.profession,
             contactno: object.contactno,
-            Id: object.Id,
+            id: object.id,
             isUpdate : true
         });
     }
@@ -41,7 +41,7 @@ class Home extends Component {
 
     submitUpdateDetails = () => {
         const userDetails = {
-            Id: this.state.Id,
+            id: this.state.id,
             name: this.state.name,
             profession: this.state.profession,
             contactno: this.state.contactno
