@@ -43,5 +43,35 @@ serviceWorker.unregister();
 
 In App.js file using above declaration code, we can create the store and apply middleware to access those store values.
 
+In this example, We have installed the router package to manupulate the inter links functionality so i hope you're aware routing functionality of react application.
 
+## Action Creator
+
+Redux includes a utility function called bindActionCreators for binding one or more action creators to the store's dispatch() function. Calling an action creator does nothing but return an object, so you have to either bind it to the store beforehand, or dispatch the result of calling your action creator.
+
+````
+store.dispatch({type: 'SOME_ACTION'})
+````
+
+Here, dispatch actions and trigger state changes to the store. react-redux is simply trying to give you convenient access to it.
+
+## Reducer 
+
+The reducer is a pure function that takes the previous state and an action, and returns the next state
+
+````
+{
+  visibilityFilter: 'SOME_ACTION',
+  todos: [
+    {
+      text: 'Consider using Redux',
+      completed: true
+    },
+    {
+      text: 'Keep all state in a single tree',
+      completed: false
+    }
+  ]
+}
+````
  
