@@ -14,7 +14,60 @@ With Redux, the state of your application is kept in a store and each component 
  - Store value can be access using applying middleware to our whole application.
 
 
+ ````javascript
+import { createStore, applyMiddleware } from 'redux';
+import thunk from "redux-thunk";
+
+const store = createStore(
+    Reducer,
+    applyMiddleware(thunk)
+);
+
+ReactDOM.render(<App store={store} /> , document.getElementById('root'));
  ````
+
+In App.js file using above declaration code, we can create the store and apply middleware to access those store values.
+
+In this example, We have installed the router package to manupulate the inter links functionality so i hope you're aware routing functionality of react application.
+
+## Action Creator
+
+Redux includes a utility function called bindActionCreators for binding one or more action creators to the store's dispatch() function. Calling an action creator does nothing but return an object, so you have to either bind it to the store beforehand, or dispatch the result of calling your action creator.
+
+```javascript
+store.dispatch({type: 'SOME_ACTION'})
+````
+
+Here, dispatch actions and trigger state changes to the store. react-redux is simply trying to give you convenient access to it.
+
+## Reducer 
+
+The reducer is a pure function that takes the previous state and an action, and returns the next state
+
+````javascript
+{
+  visibilityFilter: 'SOME_ACTION',
+  todos: [
+    {
+      text: 'Consider using Redux',
+      completed: true
+    },
+    {
+      text: 'Keep all state in a single tree',
+      completed: false
+    }
+  ]
+}
+````
+
+#### So these are the some basic fundamentals which are must to setup redux structure for react application.
+
+
+## Configuration redux architecture in sample react applicaion.
+
+[Index.js]  - Create store in the file so that we can use the global evente, variables, functions etc...
+
+````javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -39,39 +92,46 @@ ReactDOM.render(
     </Provider>, document.getElementById('root'));
 
 serviceWorker.unregister();
- ````
-
-In App.js file using above declaration code, we can create the store and apply middleware to access those store values.
-
-In this example, We have installed the router package to manupulate the inter links functionality so i hope you're aware routing functionality of react application.
-
-## Action Creator
-
-Redux includes a utility function called bindActionCreators for binding one or more action creators to the store's dispatch() function. Calling an action creator does nothing but return an object, so you have to either bind it to the store beforehand, or dispatch the result of calling your action creator.
-
-````
-store.dispatch({type: 'SOME_ACTION'})
 ````
 
-Here, dispatch actions and trigger state changes to the store. react-redux is simply trying to give you convenient access to it.
+[action.js] - Here, action method is created so that we can call this method in whole application.
 
-## Reducer 
+````javascript
+export const GET_DETAILS = 'GET_DETAILS';
 
-The reducer is a pure function that takes the previous state and an action, and returns the next state
-
-````
-{
-  visibilityFilter: 'SOME_ACTION',
-  todos: [
-    {
-      text: 'Consider using Redux',
-      completed: true
-    },
-    {
-      text: 'Keep all state in a single tree',
-      completed: false
+export function getDetails() {
+    return dispatch => {
+        return dispatch({
+            type: GET_DETAILS
+        });
     }
-  ]
-}
+};
+
 ````
- 
+
+
+[reducer.js] - Here, reducer will make sure the action which is currently performed is success or not etc..
+
+````javascript
+
+export const GET_DETAILS = 'GET_DETAILS';
+
+
+const initialState = {
+    dataCollection: {}
+}
+
+const reducerCollection = (state = initialState, action) => {
+    switch (action.type) {
+        case GET_DETAILS:
+            return {
+                ...state,
+                dataCollection: state.dataCollection
+            };
+        default:
+            return state;
+    }
+}
+
+export default reducerCollection;
+````
