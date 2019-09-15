@@ -1,15 +1,137 @@
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
+# Simple React-Redux Example
+Redux is a state management tool. While it’s mostly used with React, it can be used with any other JavaScript framework or library. It is lightweight at 2KB (including dependencies), so you don’t have to worry about it making your application’s asset size bigger.
 
-For beginners like me to learn the concepts in [Redux](https://github.com/reactjs/redux)
+With Redux, the state of your application is kept in a store and each component can access any state that it needs from this store. Let’s dive a little deeper to see why you might need a state management tool.
 
-To run this example:
+## Required PACKAGES
+ - React Redux [React Redux documentation](https://www.npmjs.com/package/react-redux) to know more about package in detail.
+ - Redux [Redux documentation](https://www.npmjs.com/package/redux) to know more about package in detail.
+ - Redux Thunk [Redux Thunk documentation](https://www.npmjs.com/package/redux-thunk) to know more about package in detail.
 
-1. [Download this repo](https://github.com/jackielii/simplest-redux-example/archive/master.zip) or `git clone https://github.com/jackielii/simplest-redux-example.git`
-2. From the repo folder run:  
-   `npm install`
-3. `npm start`
-4. open [http://localhost:8000/](http://localhost:8000/) in the browser
+#### Configuration redux structure
+ - Set up the redux strucure in react we required to create a store which contains all the variable or globle variable value so that whole redux strucutre or DOM will manupulate using that store.
+ - We require create a store from base or root, so that each component or DOM will get access of that store.
+ - Store value can be access using applying middleware to our whole application.
 
-And also head over to http://redux.js.org/ for some great documentation.
 
-There is also a [webpack](https://github.com/jackielii/simplest-redux-example/tree/webpack) and an [ES5](https://github.com/jackielii/simplest-redux-example/tree/es5) example.
+ ````javascript
+import { createStore, applyMiddleware } from 'redux';
+import thunk from "redux-thunk";
+
+const store = createStore(
+    Reducer,
+    applyMiddleware(thunk)
+);
+
+ReactDOM.render(<App store={store} /> , document.getElementById('root'));
+ ````
+
+In App.js file using above declaration code, we can create the store and apply middleware to access those store values.
+
+In this example, We have installed the router package to manupulate the inter links functionality so i hope you're aware routing functionality of react application.
+
+## Action Creator
+
+Redux includes a utility function called bindActionCreators for binding one or more action creators to the store's dispatch() function. Calling an action creator does nothing but return an object, so you have to either bind it to the store beforehand, or dispatch the result of calling your action creator.
+
+```javascript
+store.dispatch({type: 'SOME_ACTION'})
+````
+
+Here, dispatch actions and trigger state changes to the store. react-redux is simply trying to give you convenient access to it.
+
+## Reducer 
+
+The reducer is a pure function that takes the previous state and an action, and returns the next state
+
+````javascript
+{
+  visibilityFilter: 'SOME_ACTION',
+  todos: [
+    {
+      text: 'Consider using Redux',
+      completed: true
+    },
+    {
+      text: 'Keep all state in a single tree',
+      completed: false
+    }
+  ]
+}
+````
+
+#### So these are the some basic fundamentals which are must to setup redux structure for react application.
+
+
+## Configuration redux architecture in sample react applicaion.
+
+[Index.js]  - Create store in the file so that we can use the global evente, variables, functions etc...
+
+````javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from "redux-thunk";
+import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
+import Reducer from './../src/redux/reducer';
+
+const store = createStore(
+    Reducer,
+    applyMiddleware(thunk)
+);
+
+ReactDOM.render(
+    <Provider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>, document.getElementById('root'));
+
+serviceWorker.unregister();
+````
+
+[action.js] - Here, action method is created so that we can call this method in whole application.
+
+````javascript
+export const GET_DETAILS = 'GET_DETAILS';
+
+export function getDetails() {
+    return dispatch => {
+        return dispatch({
+            type: GET_DETAILS
+        });
+    }
+};
+
+````
+
+
+[reducer.js] - Here, reducer will make sure the action which is currently performed is success or not etc..
+
+````javascript
+
+export const GET_DETAILS = 'GET_DETAILS';
+
+
+const initialState = {
+    dataCollection: {}
+}
+
+const reducerCollection = (state = initialState, action) => {
+    switch (action.type) {
+        case GET_DETAILS:
+            return {
+                ...state,
+                dataCollection: state.dataCollection
+            };
+        default:
+            return state;
+    }
+}
+
+export default reducerCollection;
+````
