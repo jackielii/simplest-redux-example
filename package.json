@@ -1,42 +1,36 @@
 {
   "name": "simplest-redux-example",
-  "version": "0.0.0",
-  "description": "simplest redux + react example",
-  "main": "index.js",
-  "scripts": {
-    "start": "browserify --debug --extension=js -o bundle.js index.js && http-server -p 8000"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jackielii/simplest-redux-example.git"
-  },
-  "keywords": [
-    "redux",
-    "react"
-  ],
-  "author": "Jackie Li",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jackielii/simplest-redux-example/issues"
-  },
-  "browserify": {
-    "transform": [
-      [ "babelify", { "presets": ["es2015", "react"] } ]
-    ]
-  },
-  "homepage": "https://github.com/jackielii/simplest-redux-example#readme",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "prop-types": "^15.5.10",
-    "react": "^15.0.2",
-    "react-dom": "^15.0.2",
-    "react-redux": "^4.4.5",
-    "redux": "^3.5.2"
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0"
   },
-  "devDependencies": {
-    "babel-preset-es2015": "^6.6.0",
-    "babel-preset-react": "^6.5.0",
-    "babelify": "^7.3.0",
-    "browserify": "^13.0.1",
-    "http-server": "^0.9.0"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
