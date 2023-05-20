@@ -10,6 +10,7 @@ class Counter extends Component {
     const { value, onIncreaseClick } = this.props
     return (
       <div>
+        <p>Your Prop Value is</p>
         <span>{value}</span>
         <button onClick={onIncreaseClick}>Increase</button>
       </div>
